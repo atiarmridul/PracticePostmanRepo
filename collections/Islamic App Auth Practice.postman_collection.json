@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "bbaac405-94e3-4864-89ec-b0bddc96a27e",
+		"name": "Islamic App Auth Practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38058293",
+		"_collection_link": "https://red-desert-884667.postman.co/workspace/Team-Workspace~4472fec0-effc-4942-82ad-38cba02b3fcc/collection/38058293-bbaac405-94e3-4864-89ec-b0bddc96a27e?action=share&source=collection_link&creator=38058293"
+	},
+	"item": [
+		{
+			"name": "Auth Copy",
+			"item": [
+				{
+					"name": "User Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201, USER Created\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const userName = pm.collectionVariables.replaceIn('{{$randomFirstName}}');\r",
+									"pm.collectionVariables.set('userName',userName);\r",
+									"\r",
+									"\r",
+									"/**\r",
+									" * Generates a random email address.\r",
+									" * @returns {string} - A random email address.\r",
+									" */\r",
+									"function generateRandomEmail() {\r",
+									"    // Generate a random string of characters\r",
+									"    const randomString = Math.random().toString(36).substring(2, 15);\r",
+									"    // Define a list of possible domains\r",
+									"    const domains = ['example.com', 'test.com', 'demo.com', 'sample.com', 'aits.com' ];\r",
+									"    // Choose a random domain\r",
+									"    const domain = domains[Math.floor(Math.random() * domains.length)];\r",
+									"    // Return the full email address\r",
+									"    return `${randomString}@${domain}`;\r",
+									"}\r",
+									"\r",
+									"const randomEmail = generateRandomEmail();\r",
+									"pm.collectionVariables.set('randomEmail',randomEmail);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{userName}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "app_user",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url1}}/register",
+							"host": [
+								"{{url1}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "John Doe",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "john.doe101@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "app_user",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.3.7"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-length",
+									"value": "321"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 05 Sep 2024 06:11:41 GMT"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Registered successfully\",\n    \"data\": {\n        \"token\": \"78|brMbTlYejR1Nq2IDiU7PeOKhGwbJOGqjVP9ux0sp02317e1c\",\n        \"uuid\": \"06792337-4263-4525-ad64-31870c49a9db\",\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe101@gmail.com\",\n        \"role\": \"app_user\",\n        \"country\": null,\n        \"timezone\": null,\n        \"is_email_verified\": false,\n        \"profile_picture\": \"https://consultation.megaminds.technology/common/images/thumbnail_male.png\",\n        \"expert_profile_verification_status\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token_qa\", jsonData.data.token);",
+									"// pm.environment.set(\"patient_uuid\", jsonData.data.uuid);",
+									"",
+									"console.log('User Name is:',jsonData.data.name)",
+									"console.log('User Email is:',jsonData.data.email)",
+									"",
+									"pm.test(\"Status code is 200, Login successfull\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url1}}/login",
+							"host": [
+								"{{url1}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200, Logout successfully\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_qa}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url1}}/logout",
+							"host": [
+								"{{url1}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userName",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "randomEmail",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "token_qa",
+			"value": ""
+		},
+		{
+			"key": "url1",
+			"value": "https://consultation.megaminds.technology/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "userName",
+			"value": ""
+		},
+		{
+			"key": "randomEmail",
+			"value": ""
+		}
+	]
+}
