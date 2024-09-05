@@ -8,3 +8,7 @@ jobs:
     steps:
       - run: node --version
       - run: npm --version
+      - run: npm i -g newman
+      - run: npm i -g newman-reporter-htmlextra
+    
+    
