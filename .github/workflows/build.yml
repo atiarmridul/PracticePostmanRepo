@@ -10,6 +10,6 @@ jobs:
       - run: npm --version
       - run: npm i -g newman
       - run: npm i -g newman-reporter-htmlextra
-      - run: newman run https://api.postman.com/collections/38058293-bbaac405-94e3-4864-89ec-b0bddc96a27e?access_key=PMAT-01J70R5YH2YBFQ4YDCZHXH8ZQE
+      - run: newman run sample_postman_collection.json
     
     
