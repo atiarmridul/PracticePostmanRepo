@@ -13,11 +13,3 @@ jobs:
       - run: newman run https://api.postman.com/collections/38058293-bbaac405-94e3-4864-89ec-b0bddc96a27e?access_key=PMAT-01J70R5YH2YBFQ4YDCZHXH8ZQE
        
       # - run: newman run IslamicAppAuthPractice.postman_collection.json
-
-      - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: newman-reporter-htmlextra
-        path: newman-reporter-htmlextra/
-        retention-days: 30
-       
