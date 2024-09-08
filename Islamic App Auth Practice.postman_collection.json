@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "bbaac405-94e3-4864-89ec-b0bddc96a27e",
+		"name": "Islamic App Auth Practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38058293",
+		"_collection_link": "https://red-desert-884667.postman.co/workspace/Team-Workspace~4472fec0-effc-4942-82ad-38cba02b3fcc/collection/38058293-bbaac405-94e3-4864-89ec-b0bddc96a27e?action=share&source=collection_link&creator=38058293"
+	},
+	"item": [
+		{
+			"name": "Auth Copy",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token_qa\", jsonData.data.token);",
+									"// pm.environment.set(\"patient_uuid\", jsonData.data.uuid);",
+									"",
+									"console.log('User Name is:',jsonData.data.name)",
+									"console.log('User Email is:',jsonData.data.email)",
+									"",
+									"pm.test(\"Status code is 200, Login successfull\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url1}}/login",
+							"host": [
+								"{{url1}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200, Logout successfully\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_qa}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url1}}/logout",
+							"host": [
+								"{{url1}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token_qa",
+			"value": "232|FawXaLi81SlZfJF40ye8tN1lRDvPSRHchjApO50m7bf7a54a"
+		},
+		{
+			"key": "url1",
+			"value": "https://consultation.megaminds.technology/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "userName",
+			"value": "Hannah"
+		},
+		{
+			"key": "randomEmail",
+			"value": "roq1l1w4ww@test.com"
+		}
+	]
+}
